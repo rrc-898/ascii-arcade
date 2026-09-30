@@ -1,0 +1,88 @@
+:root { --bg: #03070a; --key: #39ff6a; }
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  height: 100dvh;
+  display: flex; flex-direction: column;
+  background: #000;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-user-select: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "DejaVu Sans Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  color: var(--key);
+}
+
+/* ── monitor ── */
+#stage {
+  flex: 1; min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+#crt {
+  position: relative;
+  padding: 14px 18px;
+  line-height: 0;
+  background: radial-gradient(ellipse at center, var(--bg) 55%, #000 135%);
+  border: 2px solid #1b1b1b;
+  border-radius: 18px;
+  box-shadow: 0 0 0 8px #0b0b0b, 0 0 0 9px #222, 0 0 60px rgba(0, 0, 0, .9), inset 0 0 70px rgba(0, 0, 0, .8);
+}
+#screen { position: relative; display: block; }
+/* copia desenfocada detrás: el resplandor del fósforo, con el color de cada carácter */
+#glow {
+  position: absolute; left: 18px; top: 14px;
+  filter: blur(5px) brightness(1.5);
+  opacity: .75;
+  pointer-events: none;
+}
+/* líneas de barrido y reflejo del cristal */
+#crt::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 2px, rgba(0, 0, 0, .26) 2px 3px),
+    linear-gradient(155deg, rgba(255, 255, 255, .05) 0%, rgba(255, 255, 255, 0) 32%);
+}
+#crt.noscan::after { background: linear-gradient(155deg, rgba(255, 255, 255, .05) 0%, rgba(255, 255, 255, 0) 32%); }
+#crt.noscan #glow { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  #screen { animation: flicker 5s infinite steps(1); }
+  #crt.noscan #screen { animation: none; }
+}
+@keyframes flicker { 0%, 100% { opacity: 1; } 47% { opacity: .965; } 49% { opacity: 1; } 90% { opacity: .975; } 92% { opacity: 1; } }
+
+/* ── mando táctil ── */
+#pad {
+  display: none;
+  flex: none;
+  align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px max(16px, env(safe-area-inset-left)) max(14px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
+}
+@media (hover: none) and (pointer: coarse) { #pad { display: flex; } }
+
+#pad button {
+  font: inherit; font-weight: bold; font-size: 18px;
+  color: var(--key);
+  background: #0a0f0a;
+  border: 2px solid currentColor;
+  border-radius: 10px;
+  touch-action: none;
+}
+#pad button.on { background: var(--key); color: #000; }
+
+.dpad { display: grid; grid-template: repeat(3, 46px) / repeat(3, 46px); }
+.dpad [data-k="up"]    { grid-area: 1 / 2; }
+.dpad [data-k="left"]  { grid-area: 2 / 1; }
+.dpad [data-k="right"] { grid-area: 2 / 3; }
+.dpad [data-k="down"]  { grid-area: 3 / 2; }
+
+.sys { display: flex; flex-direction: column; gap: 8px; }
+#pad .sys button { font-size: 11px; padding: 7px 10px; opacity: .8; }
+
+.ab { display: flex; gap: 14px; align-items: center; }
+#pad .ab button { width: 62px; height: 62px; border-radius: 50%; font-size: 22px; }
+.ab [data-k="a"] { margin-bottom: 26px; }
+
+noscript { position: fixed; inset: 0; display: grid; place-items: center; }

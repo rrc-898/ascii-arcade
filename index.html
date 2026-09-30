@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="description" content="Doce juegos clasicos dibujados solo con caracteres ASCII.">
+<meta name="theme-color" content="#000000">
+<title>ASCII ARCADE</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23020602'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='11' font-weight='bold' text-anchor='middle' fill='%2339ff6a'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/arcade.css">
+</head>
+<body>
+<main id="stage">
+  <div id="crt">
+    <canvas id="glow" aria-hidden="true"></canvas>
+    <canvas id="screen" aria-label="Pantalla del arcade"></canvas>
+  </div>
+</main>
+
+<nav id="pad" aria-label="Mando tactil">
+  <div class="dpad">
+    <button data-k="up" aria-label="Arriba">^</button>
+    <button data-k="left" aria-label="Izquierda">&lt;</button>
+    <button data-k="right" aria-label="Derecha">&gt;</button>
+    <button data-k="down" aria-label="Abajo">v</button>
+  </div>
+  <div class="sys">
+    <button data-k="esc">MENU</button>
+    <button data-k="pause">PAUSA</button>
+    <button data-k="m">SONIDO</button>
+  </div>
+  <div class="ab">
+    <button data-k="b">B</button>
+    <button data-k="a">A</button>
+  </div>
+</nav>
+
+<noscript>ASCII ARCADE necesita JavaScript.</noscript>
+
+<script src="js/engine.js"></script>
+<script src="js/games/snake.js"></script>
+<script src="js/games/tetris.js"></script>
+<script src="js/games/comecocos.js"></script>
+<script src="js/games/invaders.js"></script>
+<script src="js/games/breakout.js"></script>
+<script src="js/games/pong.js"></script>
+<script src="js/games/rana.js"></script>
+<script src="js/games/tron.js"></script>
+<script src="js/games/runner.js"></script>
+<script src="js/games/g2048.js"></script>
+<script src="js/games/buscaminas.js"></script>
+<script src="js/games/vida.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
