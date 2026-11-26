@@ -1,5 +1,14 @@
 # ASCII ARCADE
 
+**Twelve classic arcade games rendered entirely with ASCII characters on a 64×32 text screen.**
+Plain HTML, CSS and JavaScript with no dependencies or build step. [Play it in the browser](https://rrc-898.github.io/ascii-arcade/).
+
+![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?logo=javascript&logoColor=black)
+![Live demo](https://img.shields.io/badge/demo-GitHub%20Pages-222?logo=github)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+---
+
 Doce juegos clásicos dibujados solo con caracteres ASCII sobre una pantalla de
 texto de 64×32, con estética de monitor de fósforo. Sin dependencias ni
 compilación: HTML, CSS y JavaScript plano.
